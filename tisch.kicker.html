@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8">
+<title>ELPHI Tisch Kicker</title>
+</head>
+<body style="background:#08060c;color:#b08d57;font-family:monospace">
+<canvas id="c" width="900" height="540" style="border:4px solid #b08d57;display:block;margin:20px auto;background:#0a3d0a"></canvas>
+<div style="text-align:center">
+<button onclick="wuerfeln()">WÜRFELN 🎲 Xt</button>
+<button onclick="druecken()">DRÜCKEN 👊 Masse Y</button>
+<button onclick="kopfDruecken()">KOPF DRÜCKEN 🧠 ICH=9</button>
+</div>
+<script>
+// Ball = RAM: ball wander disk mit Masse
+let ball={x:450,y:270,vx:0,vy:0,mass:27};
+let torwart={y:270,vy:0};
+let dice=27;
+function wuerfeln(){ 
+  const l=[3,9,27,81,243,567,729]; 
+  dice=l[Math.floor(Math.random()*l.length)]; 
+  ball.mass=dice; 
+}
+function druecken(){
+  // nur wenn Raum <9 zum Spieler
+  ball.vx+=(Math.random()-0.5)*dice/9 + (ball.x<450?dice/9:-dice/9);
+  ball.vy+=(Math.random()-0.5)*dice/9;
+}
+function kopfDruecken(){
+  wuerfeln(); ball.vx*=1.8; ball.vy=(Math.random()-0.5)*12; ball.mass=81;
+}
+// Torwart real: 20j im HH.tor sagt niemals Shill
+// Shill real: checkt VEC<9 = entflucht
+</script>
+</body>
+</html>
